@@ -34,12 +34,22 @@ class Clock:
         self.__time_start_point = time()
 
     def resume(self) -> C:
+        """
+        This function resumes the clock.
+
+        :return: self
+        """
         if not self.__run:
             self.__run = True
             self.__time_start_point = time()
         return self
 
     def stop(self) -> C:
+        """
+        This function stops the clock
+
+        :return: self
+        """
         if self.__run:
             self.__time_count = TimeConverter(time() - self.__time_start_point + self.__time_count.as_seconds())
             self.__run = False
