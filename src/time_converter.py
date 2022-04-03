@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
 """This module converts time between seconds, milliseconds and microseconds."""
+
 from typing import TypeVar
 from enum import Enum
+
+from file_reader import FileReader
 
 T = TypeVar('T', bound='TimeConverter')
 
@@ -39,10 +42,11 @@ class TimeConverter:
         This constructor writes the given time value.
 
         :param value: float | Variable for storing and converting time
-        :param unit: string |
+        :param unit: Unit | What unit of time to use
         :return: None
         """
         if value < 0:
+            FileReader.append_error("The time in TimeConverter class cannot be negative.")
             raise ValueError("The time cannot be negative.")
 
         self.__seconds = value / unit.get_value()

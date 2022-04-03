@@ -5,6 +5,7 @@
 from time import sleep
 
 from clock import Clock
+from file_reader import FileReader
 
 
 class LoopRate:
@@ -29,6 +30,7 @@ class LoopRate:
         :return: None
         """
         if frequency <= 0:
+
             raise ValueError("The frequency must be greater than 0.")
 
         self.__clock = Clock()
@@ -42,6 +44,7 @@ class LoopRate:
         :return: None
         """
         if frequency <= 0:
+            FileReader.append_error("The frequency in LoopRate class must be greater than 0.")
             raise ValueError("The frequency must be greater than 0.")
 
         self.__frequency = frequency
