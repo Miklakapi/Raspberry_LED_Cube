@@ -1,6 +1,5 @@
 # Raspberry_LED_Cube
 
-TODO: 
-- sequences class
+TODO:
 - cube class
 - web page to create json sequences file
