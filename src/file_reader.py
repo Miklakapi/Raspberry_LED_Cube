@@ -15,7 +15,7 @@ class FileReader:
     __file_directory: str = None
     """Stores directory to all files."""
 
-    def __init__(self, file_directory: str = '..\\data\\') -> None:
+    def __init__(self, file_directory: str = '../data/') -> None:
         """
         This constructor check that the folder exists and stores it to variable.
 

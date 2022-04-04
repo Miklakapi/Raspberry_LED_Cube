@@ -27,7 +27,7 @@ class ShiftRegister:
     __modules: int = 0
     """Number of shift registers"""
 
-    __virtual_data: list[int] = None
+    __virtual_data: list = None
     """Data to virtual shift register"""
 
     def __init__(self, modules: int = 1) -> None:
@@ -63,18 +63,17 @@ class ShiftRegister:
 
         :return: None
         """
-        for x in range(self.__modules):
-            self.run(0x00000000)
+        self.run('00000000' * self.__modules)
 
-    def run(self, byte: bin) -> None:
+    def run(self, data: str) -> None:
         """
         Runs one complete cycle of data movements in the shift register.
 
-        :param byte: bin | Binary data to display
+        :param data: str | String data to display
         :return: None
         """
         for x in range(8 * self.__modules):
-            GPIO.output(self.__data, (byte >> x) & 1)
+            GPIO.output(self.__data, data[- x - 1] == '1')
             GPIO.output(self.__clock, 1)
             GPIO.output(self.__clock, 0)
         GPIO.output(self.__latch, 1)
@@ -86,20 +85,20 @@ class ShiftRegister:
 
         :return: self
         """
-        self.virtual_run(0b00000000)
+        self.virtual_run('00000000')
         return self
 
-    def virtual_run(self, byte: bin) -> S:
+    def virtual_run(self, data: str) -> S:
         """
         Runs one complete cycle of data movements in the virtual shift register.
 
-        :param byte: bin | Binary data to display
+        :param data: str | String data to display
         :return: self
         """
         temp_data = [0, 0, 0, 0, 0, 0, 0, 0]
         for x in range(8):
             temp_data.pop()
-            temp_data.insert(0, (byte >> x) & 1)
+            temp_data.insert(0, int(data[- x - 1] == '1'))
         self.__virtual_data = temp_data
 
         return self
@@ -144,7 +143,7 @@ class ShiftRegister:
 
         self.__modules = modules
 
-    def get_virtual_data(self) -> list[int]:
+    def get_virtual_data(self) -> list:
         """
         self.__virtual_data getter.
 
