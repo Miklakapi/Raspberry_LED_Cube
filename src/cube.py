@@ -12,18 +12,53 @@ from clock import Clock
 sr = ShiftRegister(4)
 sl = SequenceLoader()
 
-try:
-    sequence = sl.get_sequence_by_name("hourGlass")
-    cl = Clock()
-    for i in range(sequence['repeat']):
-        for j in range(len(sequence['data'])):
-            cl.restart()
-            while cl.get_elapsed_time().as_seconds() < sequence['delay']:
-                for k in range(5):
-                    level = "00000"
-                    level = level[:k] + '1' + level[(k + 1):]
-                    sr.run(level + sequence['data'][j][k] + '00')
-                    time.sleep(0.002)
-except KeyboardInterrupt:
-    sr.clear()
-    GPIO.cleanup()
+sequence = sl.get_sequence_by_name("hourGlass")
+cl = Clock()
+for i in range(sequence['repeat']):
+    for j in range(len(sequence['data'])):
+        cl.restart()
+        while cl.get_elapsed_time().as_seconds() < sequence['delay']:
+            for k in range(5):
+                level = "00000"
+                level = level[:k] + '1' + level[(k + 1):]
+                sr.run(level + sequence['data'][j][k] + '00')
+                time.sleep(0.003)
+
+
+class Cube:
+    """
+    123
+    """
+
+    __sequence_loader: SequenceLoader = None
+
+    __shift_register: ShiftRegister = None
+    """123"""
+
+    __clock: Clock = None
+    """123"""
+
+    def __init__(self, number_of_shift_registers: int = 4) -> None:
+        """
+
+
+        :param number_of_shift_registers:
+        :return: None
+        """
+        self.__shift_register = ShiftRegister(number_of_shift_registers)
+        self.__clock = Clock()
+
+    def run(self) -> None:
+        """
+
+        :return: None
+        """
+        pass
+
+    def __del__(self) -> None:
+        """
+        Cleans the pins of the raspberry.
+
+        :return: None
+        """
+        GPIO.cleanup()
