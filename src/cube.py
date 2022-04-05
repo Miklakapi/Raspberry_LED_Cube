@@ -54,7 +54,14 @@ class Cube:
             for j in range(len(data) - 1):
                 self.display_actual_position(data[j], data[j][-1])
 
-    def display_actual_position(self, data: list, delay: float):
+    def display_actual_position(self, data: list, delay: float) -> None:
+        """
+        This function displays the current position of all leds.
+
+        :param data: list | Data to display
+        :param delay: float | Delay between LED movements
+        :return: None
+        """
         self.__clock.restart()
         while self.__clock.get_elapsed_time().as_seconds() < delay:
             for i in range(5):
