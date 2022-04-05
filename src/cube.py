@@ -51,7 +51,7 @@ class Cube:
         repeat: int = sequence[1]['repeat']
 
         for i in range(repeat):
-            for j in range(len(data) - 1):
+            for j in range(len(data)):
                 self.display_actual_position(data[j], data[j][-1])
 
     def display_actual_position(self, data: list, delay: float) -> None:
@@ -66,7 +66,7 @@ class Cube:
         while self.__clock.get_elapsed_time().as_seconds() < delay:
             for i in range(5):
                 level = "00000"
-                level = level[:i] + '1' + level[(i + 1):]
+                level = level[:-(i + 1)] + '1' + level[-(i + 1):-1]
                 self.__shift_register.run(level + data[i] + '00')
                 self.__loop_rate.slow_loop()
 
