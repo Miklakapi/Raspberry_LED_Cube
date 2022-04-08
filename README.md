@@ -40,4 +40,10 @@ To run this project, run:
 The project is in the development phase.
 
 ## ToDo
-- Create Web page to create json sequences file
+### Web Page
+- Export to json file
+- Disable squares
+- Delay to sequence
+- Margin top to the cube
+- Online control
+- Cube build schema
