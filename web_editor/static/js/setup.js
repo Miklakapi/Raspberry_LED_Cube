@@ -127,6 +127,7 @@ function extractData($object, isOn) {
     charNr = parseInt($object.attr('class').replace('square', '').replace('off', '').replace(/\s/g, '').replace('s', ''));
     cubeArray[level] = cubeArray[level].replaceAt(charNr, parseInt(+isOn).toString());
     commitData();
+    displayDataOnServer();
 }
 
 function commitData() {
@@ -146,6 +147,7 @@ function showData() {
             }
         }
     });
+    displayDataOnServer();
 }
 
 function newSelectOption($select) {
@@ -166,11 +168,21 @@ function download() {
 
     $element.attr('href', 'data:application/json,' + encodeURIComponent(text));
     $element.attr('download', filename);
-    // $element.hide();
+    $element.hide();
     
     $('body').append($element);
     $element[0].click();
     $('body').remove($element);
+}
+
+function displayDataOnServer() {
+    $.ajax({
+        url: '/data/',
+        type: 'POST',
+        data: JSON.stringify(cubeArray),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+    });
 }
 
 String.prototype.replaceAt = function(index, replacement) {
