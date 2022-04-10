@@ -24,7 +24,8 @@ The data is displayed based on the `sequences.json` file.
 Project is created with:
 
 * Python 3.9
-* Module to manage GPIO `RPi.GPIO`
+* Flask
+* Package to manage GPIO `RPi.GPIO`
 
 ## Setup
 To run this project, run:
