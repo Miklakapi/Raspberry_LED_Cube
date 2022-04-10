@@ -1,0 +1,39 @@
+body {
+    background-color: #303030;
+}
+
+.level {
+    width: 220px;
+    height: 220px;
+    padding: 0;
+    margin: 0;
+    transform: translateX(200px) rotate(-50deg) skew(30deg, 25deg);
+    position: absolute;
+    top: 75px;
+    left: 0;
+}
+
+.square {
+    height: 20%;
+    width: 20%;
+    border: #000 solid 1px;
+    float: left;
+}
+
+.square:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.on {
+    background: radial-gradient(circle at 25% 25%, #ff1100, rgb(112, 24, 24));
+}
+
+.off {
+    background: radial-gradient(circle at 25% 25%, #5c1c1c, rgb(59, 7, 7));
+}
+
+textarea {
+    height: 135px;
+    resize: none;
+}
