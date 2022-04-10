@@ -45,5 +45,7 @@ The project is in the development phase.
 - Disable squares
 - Delay to sequence
 - Margin top to the cube
+### Core
 - Online control
+### Schema
 - Cube build schema
