@@ -3,7 +3,7 @@
 ![license](https://img.shields.io/badge/license-MIT-blue)
 ![linux](https://img.shields.io/badge/os-Linux-green)
 ![language](https://img.shields.io/badge/language-Python3.9-blue)
-![version](https://img.shields.io/badge/version-1.1.0-success)
+![version](https://img.shields.io/badge/version-1.0.0-success)
 ![status](https://img.shields.io/badge/status-develop-yellow)
 
 A simple python program that manages a led cube with a Raspberry Pi.
@@ -40,12 +40,5 @@ To run this project, run:
 The project is in the development phase.
 
 ## ToDo
-### Web Page
-- Export to json file
-- Disable squares
-- Delay to sequence
-- Margin top to the cube
-### Core
-- Online control
-### Schema
 - Cube build schema
+- Online control
