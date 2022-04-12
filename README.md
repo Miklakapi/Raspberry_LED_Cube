@@ -42,4 +42,5 @@ The project is in the development phase.
 
 ## ToDo
 - Cube build schema
-- Online control
+- Add safe exit
+- Add more argument to constructors
