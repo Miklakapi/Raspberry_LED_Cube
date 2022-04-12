@@ -3,7 +3,6 @@
 """This module managed the led cube."""
 
 import RPi.GPIO as GPIO
-import time
 
 from sequence_loader import SequenceLoader
 from shift_register import ShiftRegister
