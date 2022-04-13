@@ -27,13 +27,13 @@ class SequenceLoader:
     __number_of_sequences: int = None
     """Stores number of sequences"""
 
-    def __init__(self) -> None:
+    def __init__(self, path_to_directory: str = None) -> None:
         """
         This constructor loads the sequences and randomize them.
 
         :return: None
         """
-        self.load_sequences()
+        self.load_sequences(path_to_directory)
         self.randomize_sequences()
         self.__number_of_sequences = len(self.__all_sequences_dict)
         if not self.__number_of_sequences:

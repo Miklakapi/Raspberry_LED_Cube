@@ -27,16 +27,16 @@ class Cube:
     __clock: Clock = None
     """Stores Clock"""
 
-    def __init__(self, number_of_shift_registers: int = 4) -> None:
+    def __init__(self, number_of_shift_registers: int = 4, path_to_directory: str = '../data/', loop_rate: int = 300) -> None:
         """
         This constructor loads all private data.
 
         :param number_of_shift_registers: int | Number of shift registers
         :return: None
         """
-        self.__sequence_loader = SequenceLoader()
+        self.__sequence_loader = SequenceLoader(path_to_directory)
         self.__shift_register = ShiftRegister(number_of_shift_registers)
-        self.__loop_rate = LoopRate(300)
+        self.__loop_rate = LoopRate(loop_rate)
         self.__clock = Clock()
 
     def run(self) -> None:
@@ -75,4 +75,4 @@ class Cube:
 
         :return: None
         """
-        GPIO.cleanup()
+        self.__shift_register.clear()

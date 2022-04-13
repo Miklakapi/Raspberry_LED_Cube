@@ -59,7 +59,7 @@ class FileReader:
             raise e
 
     @staticmethod
-    def append_error(error_data: str, current_folder: bool = False, file_directory: str = '..\\data\\',) -> None:
+    def append_error(error_data: str, current_folder: bool = False, file_directory: str = '../data/',) -> None:
         """
         Writes errors to the file.
 

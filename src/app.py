@@ -14,4 +14,4 @@ if __name__ == '__main__':
             cube.run()
 
     except KeyboardInterrupt:
-        pass
+        cube.__del__()
