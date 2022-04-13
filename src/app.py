@@ -12,6 +12,5 @@ if __name__ == '__main__':
         """Main Loop"""
         while True:
             cube.run()
-
     except KeyboardInterrupt:
-        cube.__del__()
+        pass

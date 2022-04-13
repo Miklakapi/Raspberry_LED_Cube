@@ -68,11 +68,3 @@ class Cube:
                 level = level[:-(i + 1)] + '1' + level[-(i + 1):-1]
                 self.__shift_register.run(level + data[i] + '00')
                 self.__loop_rate.slow_loop()
-
-    def __del__(self) -> None:
-        """
-        Cleans the pins of the raspberry.
-
-        :return: None
-        """
-        self.__shift_register.clear()
