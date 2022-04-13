@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 """This module is responsible for managing the LED cube in real time."""
-import time
 
 import RPi.GPIO as GPIO
 import requests
@@ -10,7 +9,6 @@ import threading
 import import_from_root
 from src.shift_register import ShiftRegister
 from src.loop_rate import LoopRate
-from src.clock import Clock
 
 
 class OnlineDisplay(threading.Thread):
@@ -30,7 +28,10 @@ class OnlineDisplay(threading.Thread):
     __data: list = None
     """Data to display"""
 
-    def __init__(self, number_of_shift_registers: int = 4) -> None:
+    __working: bool = None
+    """Stops the thread"""
+
+    def __init__(self, number_of_shift_registers: int = 4, cube_loop_rate: int = 300, data_getter_rate: int = 10) -> None:
         """
         This constructor loads all private data.
 
@@ -38,8 +39,9 @@ class OnlineDisplay(threading.Thread):
         :return: None
         """
         self.__shift_register = ShiftRegister(number_of_shift_registers)
-        self.__loop_rate = LoopRate(300)
-        self.__loop_rate2 = LoopRate(10)
+        self.__loop_rate = LoopRate(cube_loop_rate)
+        self.__loop_rate2 = LoopRate(data_getter_rate)
+        self.__working = True
         threading.Thread.__init__(self)
 
     def run_cube(self) -> None:
@@ -53,7 +55,7 @@ class OnlineDisplay(threading.Thread):
             for i in range(5):
                 level = "00000"
                 level = level[:-(i + 1)] + '1' + level[-(i + 1):-1]
-                self.__shift_register.run(level + self.__data[5 - (i + 1)] + '00')
+                self.__shift_register.run(level + self.__data[i] + '00')
                 self.__loop_rate.slow_loop()
 
     def run(self) -> None:
@@ -62,7 +64,7 @@ class OnlineDisplay(threading.Thread):
 
         :return: None
         """
-        while True:
+        while self.__working:
             self.__data = self.__get_data_from_web()
             self.__loop_rate2.slow_loop()
 
@@ -84,10 +86,5 @@ class OnlineDisplay(threading.Thread):
             ]
         return response
 
-    def __del__(self) -> None:
-        """
-        Cleans the pins of the raspberry.
-
-        :return: None
-        """
-        GPIO.cleanup()
+    def stop(self):
+        self.__working = False
