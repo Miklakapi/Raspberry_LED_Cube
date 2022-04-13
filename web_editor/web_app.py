@@ -32,5 +32,5 @@ def get_data():
 
 
 if __name__ == '__main__':
-    app.run('192.168.1.184', debug=True)
+    app.run('192.168.1.184', debug=False)
 

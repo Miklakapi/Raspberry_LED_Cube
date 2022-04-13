@@ -6,7 +6,7 @@ $(document).ready(() => {
     prepareData();
     let content = '';
     for (let level = 0; level < 5; level++){
-        content += '<div class="level l' + level + '">';
+        content += '<div class="level l' + (4 - level) + '">';
         for (let square = 0; square < 25; square++) {
             content += '<div class="square off s' + square + '"></div>';
         }
