@@ -24,6 +24,30 @@ Program written in Python, javaScript, HTML, CSS that allows you to edit and dis
 ### Online LED Cube
 A program written in Python that manages an LED cube just like a Simple LED Cube, but displays data based on data retrieved from a web server.
 
+```
+One sequence
+[
+    "0000000000000000000000000",    <- First flor
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "1111110001100011000111111",
+    "1111111111110111111111111",    <- Fifth floor
+    0.04                            <- How long this sequence will be displayed
+]
+
+Cube columns
+┌────┬────┬────┬────┬────┐
+│ 05 │ 10 │ 15 │ 20 │ 25 │
+├────┼────┼────┼────┼────┤
+│ 04 │ 09 │ 14 │ 19 │ 24 │
+├────┼────┼────┼────┼────┤
+│ 03 │ 08 │ 13 │ 18 │ 23 │
+├────┼────┼────┼────┼────┤
+│ 02 │ 07 │ 12 │ 17 │ 22 │
+├────┼────┼────┼────┼────┤
+│ 01 │ 06 │ 11 │ 16 │ 21 │
+└────┴────┴────┴────┴────┘
+```
 ## Technologies
 Project is created with:
 
