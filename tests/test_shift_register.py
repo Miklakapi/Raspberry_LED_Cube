@@ -9,8 +9,8 @@ from src.shift_register import ShiftRegister
 class TestShiftRegister(unittest.TestCase):
 
     def test_data(self):
-        self.assertRaises(ValueError, ShiftRegister, -1)
         sr = ShiftRegister()
+        self.assertRaises(ValueError, sr.set_modules, -1)
         li = [1, 0, 1, 0, 0, 1, 0, 1]
         self.assertListEqual(sr.virtual_run('10100101').get_virtual_data(), li)
 

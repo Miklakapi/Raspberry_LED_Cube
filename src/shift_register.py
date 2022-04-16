@@ -30,6 +30,9 @@ class ShiftRegister:
     __virtual_data: list = None
     """Data to virtual shift register"""
 
+    __pins_out: bool = None
+    """Blocks the destructor"""
+
     def __init__(self, modules: int = 1, directory_name: str = '../data/') -> None:
         """
         This constructor prepares the raspberry to run and writes the data needed to use the shift register.
@@ -37,6 +40,8 @@ class ShiftRegister:
         :param modules: int | Number of shift registers to control
         :return: None
         """
+        self.__pins_out = False
+
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
 
@@ -50,12 +55,15 @@ class ShiftRegister:
         self.__data = file_dict["data"]
         self.__clock = file_dict["clock"]
         self.__latch = file_dict["latch"]
-        self.set_modules(modules)
-        self.__virtual_data = [0, 0, 0, 0, 0, 0, 0, 0]
 
         GPIO.setup(self.__data, GPIO.OUT)
         GPIO.setup(self.__clock, GPIO.OUT)
         GPIO.setup(self.__latch, GPIO.OUT)
+
+        self.__pins_out = True
+
+        self.set_modules(modules)
+        self.__virtual_data = [0, 0, 0, 0, 0, 0, 0, 0]
 
     def clear(self) -> None:
         """
@@ -157,5 +165,6 @@ class ShiftRegister:
 
         :return: None
         """
-        self.clear()
-        GPIO.cleanup()
+        if self.__pins_out:
+            self.clear()
+            GPIO.cleanup()

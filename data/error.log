@@ -2,3 +2,5 @@
 03/04/2022 19:46:11: Number of modules in ShiftRegister class must be greater than 0.
 03/04/2022 19:49:21: Number of modules in ShiftRegister class must be greater than 0.
 04/04/2022 22:29:59: Number of modules in ShiftRegister class must be greater than 0.
+16/04/2022 16:18:03: "abc" folder not found.
+16/04/2022 16:18:05: The time in TimeConverter class cannot be negative.

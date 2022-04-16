@@ -3,6 +3,9 @@
 """Adds a path for importing between directories to work"""
 
 import sys
+from pathlib import Path
 
-sys.path.insert(1, sys.path[0][0:-10])
-sys.path.insert(1, sys.path[0][0:-10] + 'src')
+here = Path(__file__).resolve()
+
+sys.path.insert(1, str(here.parent.parent.absolute()))
+sys.path.insert(1, str(here.parent.parent.absolute()) + '/src')
